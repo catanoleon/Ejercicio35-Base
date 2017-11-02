@@ -24,6 +24,8 @@ public class ControlJuego {
 		//Creamos el tablero:
 		tablero = new int[LADO_TABLERO][LADO_TABLERO];
 		
+		puntuacion = 0;
+		
 		//Inicializamos una nueva partida
 		inicializarPartida();
 	}
@@ -45,9 +47,9 @@ public class ControlJuego {
 
 		minas = 0;
 		
-		for (int i = 0; i < tablero.length; i++) {
+		for (int i = 0; i < tablero.length-1; i++) {
 			
-			for (int j = 0; j < tablero.length; j++) {
+			for (int j = 0; j < tablero.length-1; j++) {
 				
 				if(minas < MINAS_INICIALES) {
 				
@@ -55,8 +57,6 @@ public class ControlJuego {
 					
 					n1 = rd.nextInt(10);
 					n2 = rd.nextInt(10);
-					
-					minas++;
 					
 				}
 				
@@ -77,6 +77,7 @@ public class ControlJuego {
 			
 			for (int j = 0; j < tablero.length; j++) {
 				
+				tablero[i][j] = calculoMinasAdjuntas(i, j);
 				
 			}
 		}
@@ -93,8 +94,22 @@ public class ControlJuego {
 	 **/
 	private int calculoMinasAdjuntas(int i, int j){
 		
+		int minas = 0;
+		
+		for (i = Math.max(i-1, 0); i <= Math.min(i+1, LADO_TABLERO-1) ; i++) {
+			
+			for ( j = Math.max(j-1, 0); j <= Math.min(j+1, LADO_TABLERO-1); j++) {
+				
+				if(tablero[i][j] == MINA) {
+					
+					minas ++;
+					
+				}
+			}
+		}
 		
 
+		return minas;
 	}
 	
 	/**
@@ -106,6 +121,18 @@ public class ControlJuego {
 	 */
 	public boolean abrirCasilla(int i, int j){
 		
+		if(tablero[i][i] != MINA) {
+			
+			puntuacion++;
+			
+			return true;
+			
+		}
+		else {
+			
+			return false;
+			
+		}
 		
 
 	}
@@ -117,6 +144,18 @@ public class ControlJuego {
 	 * @return Devuelve verdadero si se han abierto todas las celdas que no son minas.
 	 **/
 	public boolean esFinJuego(){
+		
+		int total = (LADO_TABLERO * LADO_TABLERO) - MINA;
+		
+		if(puntuacion == total) {
+			
+			return true;
+			
+		}
+		else {
+			
+			return false;
+		}
 		
 		
 	}
@@ -145,7 +184,7 @@ public class ControlJuego {
 	 */
 	public int getMinasAlrededor(int i, int j) {
 		
-		
+		return tablero[i][j];
 	}
 
 	/**

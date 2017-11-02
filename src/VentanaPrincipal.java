@@ -15,7 +15,7 @@ import javax.swing.SwingConstants;
 
 
 public class VentanaPrincipal {
-
+	
 	//La ventana principal, en este caso, guarda todos los componentes:
 	JFrame ventana;
 	JPanel panelImagen;
@@ -139,7 +139,24 @@ public class VentanaPrincipal {
 	 * Método que inicializa todos los lísteners que necesita inicialmente el programa
 	 */
 	public void inicializarListeners(){
-		//TODO
+
+		for (int i = 0; i < botonesJuego.length; i++) {
+			
+			for (int j = 0; j < botonesJuego.length-1; j++) {
+				
+				botonesJuego[i][j].addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						
+						
+						
+					}
+				});
+			}
+			
+		}
+		
 	}
 	
 	
@@ -156,7 +173,73 @@ public class VentanaPrincipal {
 	 * @param j: posición horizontal de la celda.
 	 */
 	public void mostrarNumMinasAlrededor(int i , int j) {
-		//TODO
+		
+		int minas = juego.getMinasAlrededor(i, j);
+		String minas2 = Integer.toString(minas);
+		
+		for (int k = 0; k < panelesJuego.length; k++) {
+			
+			for (int k2 = 0; k2 < panelesJuego.length; k2++) {
+				
+				if(minas == 0) {
+					
+					panelesJuego[k][k2].removeAll();
+					JPanel min = new JPanel();
+					min.disable();
+					min.setName(minas2);
+					
+					min.setBackground(Color.BLACK);
+					
+					
+					
+				}
+				if(minas == 1) {
+				
+					panelesJuego[k][k2].removeAll();
+					JPanel min = new JPanel();
+					min.disable();
+					min.setName(minas2);
+					
+					min.setBackground(Color.CYAN);
+					
+					
+				}
+				if(minas == 2) {
+					
+					panelesJuego[k][k2].removeAll();
+					JPanel min = new JPanel();
+					min.disable();
+					min.setName(minas2);
+					
+					min.setBackground(Color.GREEN);
+					
+					
+				}
+				if(minas == 3) {
+					
+					panelesJuego[k][k2].removeAll();
+					JPanel min = new JPanel();
+					min.disable();
+					min.setName(minas2);
+					
+					min.setBackground(Color.ORANGE);
+					
+					
+				}
+				if(minas >= 4) {
+					
+					panelesJuego[k][k2].removeAll();
+					JPanel min = new JPanel();
+					min.disable();
+					min.setName(minas2);
+					
+					min.setBackground(Color.RED);
+					
+				}
+			
+			}
+		}
+		
 	}
 	
 	
