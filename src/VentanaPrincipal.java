@@ -144,19 +144,19 @@ public class VentanaPrincipal {
 			
 			for (int j = 0; j < botonesJuego.length-1; j++) {
 				
-				botonesJuego[i][j].addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						
-						
-						
-					}
-				});
-			}
-			
+				botonesJuego[i][j].addActionListener(new ActionBoton(this,i,j));
 		}
-		
+			
+	}
+		botonEmpezar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+				
+			}
+		});
 	}
 	
 	
@@ -176,18 +176,14 @@ public class VentanaPrincipal {
 		
 		int minas = juego.getMinasAlrededor(i, j);
 		String minas2 = Integer.toString(minas);
-		
-		for (int k = 0; k < panelesJuego.length; k++) {
-			
-			for (int k2 = 0; k2 < panelesJuego.length; k2++) {
 				
 				if(minas == 0) {
 					
-					panelesJuego[k][k2].removeAll();
-					JPanel min = new JPanel();
+					panelesJuego[i][i].removeAll();
+					JLabel min = new JLabel(minas2,SwingConstants.CENTER);
 					min.disable();
 					min.setName(minas2);
-					
+					min.disable();
 					min.setBackground(Color.BLACK);
 					
 					
@@ -195,8 +191,8 @@ public class VentanaPrincipal {
 				}
 				if(minas == 1) {
 				
-					panelesJuego[k][k2].removeAll();
-					JPanel min = new JPanel();
+					panelesJuego[i][j].removeAll();
+					JLabel min = new JLabel(minas2,SwingConstants.CENTER);
 					min.disable();
 					min.setName(minas2);
 					
@@ -206,8 +202,8 @@ public class VentanaPrincipal {
 				}
 				if(minas == 2) {
 					
-					panelesJuego[k][k2].removeAll();
-					JPanel min = new JPanel();
+					panelesJuego[i][j].removeAll();
+					JLabel min = new JLabel(minas2,SwingConstants.CENTER);
 					min.disable();
 					min.setName(minas2);
 					
@@ -217,8 +213,8 @@ public class VentanaPrincipal {
 				}
 				if(minas == 3) {
 					
-					panelesJuego[k][k2].removeAll();
-					JPanel min = new JPanel();
+					panelesJuego[i][j].removeAll();
+					JLabel min = new JLabel(minas2,SwingConstants.CENTER);
 					min.disable();
 					min.setName(minas2);
 					
@@ -228,8 +224,8 @@ public class VentanaPrincipal {
 				}
 				if(minas >= 4) {
 					
-					panelesJuego[k][k2].removeAll();
-					JPanel min = new JPanel();
+					panelesJuego[i][j].removeAll();
+					JLabel min = new JLabel(minas2,SwingConstants.CENTER);
 					min.disable();
 					min.setName(minas2);
 					
@@ -238,9 +234,9 @@ public class VentanaPrincipal {
 				}
 			
 			}
-		}
 		
-	}
+		
+	
 	
 	
 	/**
@@ -249,14 +245,33 @@ public class VentanaPrincipal {
 	 * @post : Todos los botones se desactivan excepto el de volver a iniciar el juego.
 	 */
 	public void mostrarFinJuego(boolean porExplosion) {
-		//TODO
+		
+		if(porExplosion) {
+			
+			JOptionPane.showInputDialog(ventana, "Has perdido, otra vez ser�", 0);
+			
+		}
+		else {
+			
+			JOptionPane.showInputDialog(ventana, "Enhorabuena has ganado", 0);
+			
+		}
 	}
 
 	/**
 	 * Método que muestra la puntuación por pantalla.
 	 */
 	public void actualizarPuntuacion() {
-		//TODO
+		
+		int verPuntos = juego.getPuntuacion();
+		
+		String totalPuntos = Integer.toString(verPuntos);
+		
+		JLabel puntos = new JLabel(totalPuntos);
+		
+		panelPuntuacion.add(puntos);
+		
+		refrescarPantalla();
 	}
 	
 	/**

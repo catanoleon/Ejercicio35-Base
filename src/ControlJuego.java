@@ -125,12 +125,12 @@ public class ControlJuego {
 			
 			puntuacion++;
 			
-			return true;
+			return false;
 			
 		}
 		else {
 			
-			return false;
+			return true;
 			
 		}
 		
