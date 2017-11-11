@@ -46,6 +46,7 @@ public class ActionBoton implements ActionListener{
 						
 						ventan.actualizarPuntuacion();
 						ventan.mostrarNumMinasAlrededor(i, j);
+						ventan.refrescarPantalla();
 						
 					}
 				}

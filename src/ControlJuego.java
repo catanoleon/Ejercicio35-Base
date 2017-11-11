@@ -82,6 +82,7 @@ public class ControlJuego {
 			}
 		}
 		
+		
 	}
 	
 	/**Cálculo de las minas adjuntas:
@@ -121,7 +122,7 @@ public class ControlJuego {
 	 */
 	public boolean abrirCasilla(int i, int j){
 		
-		if(tablero[i][i] != MINA) {
+		if(tablero[i][j] != MINA) {
 			
 			puntuacion++;
 			

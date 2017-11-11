@@ -145,6 +145,7 @@ public class VentanaPrincipal {
 			for (int j = 0; j < botonesJuego.length-1; j++) {
 				
 				botonesJuego[i][j].addActionListener(new ActionBoton(this,i,j));
+				
 		}
 			
 	}
@@ -176,68 +177,53 @@ public class VentanaPrincipal {
 		
 		int minas = juego.getMinasAlrededor(i, j);
 		String minas2 = Integer.toString(minas);
-				
+		JLabel min = new JLabel(minas2,SwingConstants.CENTER);		
+		
 				if(minas == 0) {
 					
-					panelesJuego[i][i].removeAll();
-					JLabel min = new JLabel(minas2,SwingConstants.CENTER);
-					min.disable();
-					min.setName(minas2);
+					panelesJuego[i][j].removeAll();
 					min.disable();
 					min.setBackground(Color.BLACK);
-					
+					panelesJuego[i][j].add(min);
 					
 					
 				}
 				if(minas == 1) {
 				
 					panelesJuego[i][j].removeAll();
-					JLabel min = new JLabel(minas2,SwingConstants.CENTER);
 					min.disable();
-					min.setName(minas2);
-					
 					min.setBackground(Color.CYAN);
-					
+					panelesJuego[i][j].add(min);
 					
 				}
 				if(minas == 2) {
 					
 					panelesJuego[i][j].removeAll();
-					JLabel min = new JLabel(minas2,SwingConstants.CENTER);
 					min.disable();
-					min.setName(minas2);
-					
 					min.setBackground(Color.GREEN);
-					
+					panelesJuego[i][j].add(min);
 					
 				}
 				if(minas == 3) {
 					
 					panelesJuego[i][j].removeAll();
-					JLabel min = new JLabel(minas2,SwingConstants.CENTER);
 					min.disable();
-					min.setName(minas2);
-					
 					min.setBackground(Color.ORANGE);
-					
-					
+					panelesJuego[i][j].add(min);
+					refrescarPantalla();
 				}
 				if(minas >= 4) {
 					
 					panelesJuego[i][j].removeAll();
-					JLabel min = new JLabel(minas2,SwingConstants.CENTER);
 					min.disable();
-					min.setName(minas2);
-					
 					min.setBackground(Color.RED);
+					panelesJuego[i][j].add(min);
+					
 					
 				}
 			
 			}
 		
-		
-	
-	
 	
 	/**
 	 * Método que muestra una ventana que muestra el fin del juego
@@ -267,11 +253,8 @@ public class VentanaPrincipal {
 		
 		String totalPuntos = Integer.toString(verPuntos);
 		
-		JLabel puntos = new JLabel(totalPuntos);
+		pantallaPuntuacion.setText(totalPuntos);
 		
-		panelPuntuacion.add(puntos);
-		
-		refrescarPantalla();
 	}
 	
 	/**
